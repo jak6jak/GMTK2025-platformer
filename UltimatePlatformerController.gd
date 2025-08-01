@@ -180,11 +180,20 @@ var rollTap
 var downTap
 var twirlTap
 
+@onready var player_death_check = $"HitDetector"
+@onready var start_pos : Node2D = get_tree().root.get_node("Level/%StartPos")
+func _reset_player()->void:
+	print("Reseting player")
+	velocity = Vector2(0,0)
+	position = start_pos.position
+	pass
+
+
 func _ready():
 	wasMovingR = true
 	anim = PlayerSprite
 	col = PlayerCollider
-	
+	level_manager.singleton.reset_level.connect(_reset_player)
 	_updateData()
 	
 func _updateData():

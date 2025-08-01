@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://db85501gkryyo"]
+[gd_scene load_steps=30 format=3 uid="uid://db85501gkryyo"]
 
 [ext_resource type="Script" uid="uid://bbduwedqs3vy7" path="res://UltimatePlatformerController.gd" id="1_4flbx"]
 [ext_resource type="Texture2D" uid="uid://crbtwxhu1ri86" path="res://Clothes 1/Character1F_1_fall_0.png" id="2_sweqy"]
@@ -167,6 +167,8 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2hs0m"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1jxqw"]
+
 [node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("PlayerSprite", "PlayerCollider", "leftRaycast", "middleRaycast", "rightRaycast")]
 script = ExtResource("1_4flbx")
 PlayerSprite = NodePath("AnimatedSprite2D")
@@ -191,7 +193,7 @@ shape = SubResource("CapsuleShape2D_onrkg")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_4flbx")
 animation = &"jump"
-frame_progress = 0.0586768
+frame_progress = 0.874622
 
 [node name="LeftRaycast" type="RayCast2D" parent="."]
 target_position = Vector2(-13, 0)
@@ -209,5 +211,10 @@ script = ExtResource("6_2hs0m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitDetector"]
 shape = SubResource("CapsuleShape2D_2hs0m")
+
+[node name="WinDetector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WinDetector"]
+shape = SubResource("CapsuleShape2D_1jxqw")
 
 [connection signal="body_shape_entered" from="HitDetector" to="HitDetector" method="_on_body_shape_entered"]
